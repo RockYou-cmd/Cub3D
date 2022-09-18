@@ -6,7 +6,7 @@
 #    By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/13 14:03:17 by ael-korc          #+#    #+#              #
-#    Updated: 2022/09/12 00:14:35 by ael-korc         ###   ########.fr        #
+#    Updated: 2022/09/17 19:31:38 by ael-korc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS = cub3d.c \
 	readmap.c \
 	gnl/get_next_line.c \
 	gnl/get_next_line_utils.c \
-	init.c draw.c checks.c raycasting.c\
+	init.c draw.c checks.c raycasting.c parsing.c utils.c\
 	
 
 OBJS = $(SRCS:.c=.o)

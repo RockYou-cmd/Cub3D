@@ -1,8 +1,7 @@
 #include "cub3d.h"
 
-
-int movment(int key)
-{    
+void movement_check(int key)
+{
     if (key == RIGHT)
         data.player.twalkDirection = -1;
     if (key == LEFT)
@@ -11,12 +10,17 @@ int movment(int key)
         data.player.walkDirection = 1;
     if (key == DOWN)
         data.player.walkDirection = -1;
-    if (key == 53 )
-        exit(1);
     if (key == TRIGHT)
         data.player.turnDirection = 1;
     if (key == TLEFT)
         data.player.turnDirection = -1;
+    if (key == 53 )
+        exit(1);
+}
+
+int movment(int key)
+{    
+    movement_check(key);
     update();
     return 0;
 }

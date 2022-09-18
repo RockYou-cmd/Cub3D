@@ -44,7 +44,7 @@ void dda(float x2, float y2)
 		i ++;
 	}
 }
-void main_dda(float x, float y, float x2, float y2)
+void main_dda(float x, float y, float x2, float y2, int color)
 {
 	float step;
 	float dx;
@@ -62,7 +62,7 @@ void main_dda(float x, float y, float x2, float y2)
 	i = 1;
 	while(i <= step)
 	{
-		my_main_mlx_pixel_put(x, y, 16640252);
+		my_main_mlx_pixel_put(x, y, color);
 		x += dx;
 		y += dy;
 		i ++;
@@ -160,9 +160,11 @@ void check_ray(float ray_angle, int i)
 	wall_hight = (40 / hit_distance) * walldistance;
 	// i = 5;
 	if (way)
-		strip(i * data.rays.width, (data.window_hight / 2) - (wall_hight / 2), data.rays.width, wall_hight, 15717540);
+		strip(i * data.rays.width, (data.window_hight / 2) - (wall_hight / 2), data.rays.width, wall_hight, 16777140);
 	else
-		strip(i * data.rays.width, (data.window_hight / 2) - (wall_hight / 2), data.rays.width, wall_hight, 15710628);
+		strip(i * data.rays.width, (data.window_hight / 2) - (wall_hight / 2), data.rays.width, wall_hight, 16777092);
+	main_dda(i * data.rays.width , 0 ,i * data.rays.width,(data.window_hight / 2) - (wall_hight / 2), 11459583);
+	main_dda(i * data.rays.width , (data.window_hight / 2) + (wall_hight / 2) ,i * data.rays.width,data.window_hight, 2101790);
 	dda(x, y);
 }
 
@@ -179,7 +181,6 @@ void cast_rays()
 	{
 		check_ray(ray_angle , i);
 		ray_angle += data.player.fov_angle / data.rays.num;
-		// move_angle += data.player.fov_angle / data.rays.num;
 		i ++;
 	}
 }

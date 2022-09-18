@@ -67,7 +67,7 @@ void draw()
 {
 	int iy = 0;
 	int ix = 0;
-
+	
 	mlx_clear_window(data.mlx, data.win);	
 	while (iy < data.map.rows)
 	{
@@ -75,9 +75,10 @@ void draw()
 		while(ix < data.map.cols)
 		{
 			if (data.map.array[iy][ix] == '1')
-				square_drawing(ix * data.square_size, iy * data.square_size, 16777164);
-			else
-				square_drawing(ix * data.square_size, iy * data.square_size, 2431280);
+				square_drawing(ix * data.square_size, iy * data.square_size, sum_of_rgb(222, 16777164, 0, 0));
+			// else if(data.map.array[iy][ix] == '0')
+			else 
+				square_drawing(ix * data.square_size, iy * data.square_size,  sum_of_rgb(222, 2431280, 0, 0));
 
 			ix ++;
 		}

@@ -34,8 +34,8 @@ void var_update()
 void update()
 {
     var_update();
-	// draw();
 	cast_rays();
+	draw();
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 
 }
@@ -50,17 +50,17 @@ void init(char **av)
     data.square_size = 64;
     data.map.array = malloc(sizeof(char *));
     read_map(av[1]);
-    data.window_hight = 1000;
-    data.window_width = 1000;
-    // data.window_hight = data.square_size * data.map.rows;
-    // data.window_width = data.square_size * data.map.cols;
+    // data.window_hight = 1000;
+    // data.window_width = 1900;
+    data.window_hight = data.square_size * data.map.rows;
+    data.window_width = data.square_size * data.map.cols;
     data.player.turnDirection = 0;
     data.player.walkDirection = 0;
     data.player.rotationAngle = M_PI / 2;
-    data.player.rotationSpeed = 6 * (M_PI / 180);
-    data.player.moveSpeed = 5.0;
-    data.player.x = data.window_width/2;
-    data.player.y = data.window_hight/2;
+    data.player.rotationSpeed = 8 * (M_PI / 180);
+    data.player.moveSpeed = 10.0;
+    // data.player.x = data.window_width/2;
+    // data.player.y = data.window_hight/2;
     data.player.fov_angle = 60 * (M_PI / 180);
     data.rays.num = data.window_width;
     data.rays.width = 1;

@@ -93,9 +93,11 @@ int    vertic_check(float ray_angle);
 int hcast(float nextX, float nextY);
 int vcast(float nextX, float nextY);
 float angle_corrector(float angle);
+int sum_of_rgb(int t, int r, int g, int b);
 
 void dda(float x2, float y2);
-void main_dda(float x, float y, float x2, float y2);
+void main_dda(float x, float y, float x2, float y2, int color);
+void	end_game(char *error_message);
 
 
 #endif // CUB3d
