@@ -33,6 +33,7 @@ void var_update()
 }
 void update()
 {
+	// puts(data.map.array[42]);
     var_update();
 	cast_rays();
 	draw();
@@ -47,13 +48,19 @@ void game_start()
 
 void init(char **av)
 {
-    data.square_size = 64;
-    data.map.array = malloc(sizeof(char *));
-    read_map(av[1]);
-    // data.window_hight = 1000;
-    // data.window_width = 1900;
-    data.window_hight = data.square_size * data.map.rows;
-    data.window_width = data.square_size * data.map.cols;
+    // t_list_map *list;
+	// t_line *lines;
+
+	// list = creat_list_map(av[1]);
+    data.square_size = 32;
+    init_map(av);
+    // data.map = ;
+    // data.map.array = malloc(sizeof(char *));
+    // read_map(av[1]);
+    data.window_hight = 2000;
+    data.window_width = 1900;
+    // data.window_hight = data.square_size * data.map.rows;
+    // data.window_width = data.square_size * data.map.cols;
     data.texture_size = data.square_size;
     data.player.rotationAngle = M_PI / 2;
     data.player.rotationSpeed = 3 * (M_PI / 180);
@@ -65,4 +72,3 @@ void init(char **av)
     data.rays.width = 1;
 }
  
-  

@@ -6,7 +6,7 @@
 #    By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/13 14:03:17 by ael-korc          #+#    #+#              #
-#    Updated: 2022/09/20 17:07:09 by ael-korc         ###   ########.fr        #
+#    Updated: 2022/09/21 19:06:54 by ael-korc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ CFLAGS = -Wall -Werror -Wextra -Ofast -Os
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 SRCS = cub3d.c \
-	readmap.c \
 	gnl/get_next_line.c \
 	gnl/get_next_line_utils.c \
 	init.c draw.c checks.c raycasting.c parsing.c utils.c\
+	parsing_suport.c list_manipulation.c properties_managment.c
 	
 
 OBJS = $(SRCS:.c=.o)

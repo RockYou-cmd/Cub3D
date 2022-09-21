@@ -37,6 +37,47 @@ typedef struct s_rays
     float first_intersectionY;
 }t_rays;
 
+enum
+{
+	NO,
+	SO,
+	WE,
+	EA,
+	F,
+	C
+};
+
+typedef struct s_properties
+{
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+
+	int f[3];
+	int c[3];
+	int player_l_d;
+
+}	t_props;
+
+typedef struct s_line
+{
+	char *line;
+	int len;
+} t_line;
+
+struct map
+{
+	char *line;
+	int len;
+};
+
+typedef struct s_list_cub
+{
+	char *line;
+	struct s_list_cub *next;
+} t_list_map;
+
 typedef struct s_map
 {
 	char	**array;
@@ -70,14 +111,16 @@ typedef struct s_data
     int window_width;
     int texture_size;
     int square_size;
-    t_map map;
-    t_player player;
-    t_rays	rays;
     void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+    t_map map;
+    t_player player;
+    t_rays	rays;
+    t_props props;
+
 }t_data;
 
 t_data data;
@@ -106,45 +149,12 @@ void	end_game(char *error_message);
 /* ////////////////// */
 /* ///PARSING UTILS// */
 
-enum
-{
-	NO,
-	SO,
-	WE,
-	EA,
-	F,
-	C
-};
-
-typedef struct s_properties
-{
-	char *no;
-	char *so;
-	char *we;
-	char *ea;
-
-	int f[3];
-	int c[3];
-	int player_l_d;
-
-}	t_props;
-
-struct map
-{
-	char *line;
-	int len;
-};
-
-typedef struct s_list_cub
-{
-	char *line;
-	struct s_list_cub *next;
-} t_list_map;
 
 t_props pars_props(t_list_map *list);
 void	delete_props(t_list_map **list);
 void	print_props(t_props props);
 void	delete_props(t_list_map **list);
+void init_map(char **av);
 // void	remove_empty_lines(t_list_map **list);
 
 /*parsing suport*/
@@ -152,6 +162,7 @@ void	delete_props(t_list_map **list);
 void	remove_empty_lines(t_list_map **list);
 int		all_spaces(char *line);
 int		ft_strcmp(const char *s1, const char *s2);
+void print_arr(char **lines);
 /* ////////////////// */
 /* ////////////////// */
 

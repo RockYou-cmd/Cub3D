@@ -13,7 +13,7 @@ void	my_mini_mlx_pixel_put(int x, int y, int color)
 	if (x >= data.window_width || x <= 0 || y >= data.window_hight || y <= 0)
 		return ;
 	// my_main_mlx_pixel_put(x, y, color);
-	// 	return ;
+		// return ;
 	x /= 4;
 	y /= 4;
 	dst = data.addr + (y * data.line_length + x * (data.bits_per_pixel / 8));
@@ -68,17 +68,17 @@ void draw()
 	int iy = 0;
 	int ix = 0;
 	
-	mlx_clear_window(data.mlx, data.win);	
+	mlx_clear_window(data.mlx, data.win);
 	while (iy < data.map.rows)
 	{
 		ix = 0;
-		while(ix < data.map.cols)
+		while(data.map.array[iy][ix])
 		{
-			if (data.map.array[iy][ix] == '1')
+			if (data.map.array[iy][ix] &&  data.map.array[iy][ix] == '1')
 				square_drawing(ix * data.square_size, iy * data.square_size, 16775916);
-			// else if(data.map.array[iy][ix] == '0')
-			else 
+			else if(data.map.array[iy][ix] && data.map.array[iy][ix] == '0')
 				square_drawing(ix * data.square_size, iy * data.square_size, 2371579);
+			// else 
 
 			ix ++;
 		}

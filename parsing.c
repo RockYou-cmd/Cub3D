@@ -38,11 +38,7 @@ int count_list_elms(t_list_map *list)
 	return (count);
 }
 
-typedef struct s_line
-{
-	char *line;
-	int len;
-} t_line;
+
 
 char	*ft_strdup_n(const char *s1)
 {
@@ -214,7 +210,6 @@ void check_last_line(t_line *lines, int i)
 void map_is_closed(t_line *lines)
 {
 	int index;
-	int i;
 
 	index = 1;
 	check_first_line(lines);
@@ -262,8 +257,12 @@ void check_map_elm(t_line *lines, t_props *props)
 		{
 			if (check_player(lines[index].line[i]) != -1 && player == -1)
 			{
+				data.player.x = i * data.square_size + 15;
+				data.player.y = index * data.square_size + 15;
 				player = 1;
 				(*props).player_l_d = check_player(lines[index].line[i]);
+				lines[index].line[i] = '0';
+				// data.map.array[index][i] = '0';
 			}
 			else if (check_player(lines[index].line[i]) != -1 && player != -1)
 				end_game("too many players");
@@ -290,47 +289,47 @@ void print_arr(char **lines)
 	
 }
 
-void width_height(t_line *lines, t_map *map)
+void width_height(t_line *lines)
 {
 	int i;
 
-	if (!lines || !map)
+	if (!lines)
 		return ;
 	i = 0;
 	while (lines[i].line)
 	{
-		if (map->rows < lines[i].len)
-			map->rows = lines[i].len;
+		if (data.map.cols < lines[i].len)
+			data.map.cols = lines[i].len;
 		i++;
 	}
-	map->cols = i;
+	data.map.rows = i;
 }
 
-t_map line_to_str(t_line *lines)
+void line_to_str(t_line *lines)
 {
-	t_map map;
+	// t_map map;
 	int i;
 	int len;
 
-	map.rows = -1;
-	map.cols = -1;
-	width_height(lines, &map);
-	if (map.cols == -1 || map.rows == -1)
+	data.map.rows = -1;
+	data.map.cols = -1;
+	width_height(lines);
+	if (data.map.cols == -1 || data.map.rows == -1)
 		end_game("map 69");
-	map.array = malloc(sizeof(char *) * map.cols);
+	data.map.array = malloc(sizeof(char *) * (data.map.rows + 1));
 	if (!lines)
 		end_game("map 69");
 	i = 0;
 	len = 0;
 	while (lines[i].line)
 	{
-		map.array[i] = lines[i].line;
+		data.map.array[i] = lines[i].line;
 		i++;
 	}
-	map.array[i] = lines[i].line;
+	data.map.array[i] = NULL;
 	free(lines);
 	lines = NULL;
-	return (map);
+	// return (map);
 }
 
 void	free_list(t_list_map **list)
@@ -342,30 +341,35 @@ void	free_list(t_list_map **list)
 		tmp = delete_node(list, tmp);
 }
 
-int main()
+void init_map(char **av)
 {
+
+// }
+
+// int main()
+// {
 	t_list_map *list;
 	t_props props;
 	t_line *lines;
-	t_map map;
+	// t_map map;
 
-	list = creat_list_map("maps/map2.cub");
+	list = creat_list_map(av[1]);
 	remove_empty_lines(&list);
-	props = pars_props(list);
+	data.props = pars_props(list);
 	props.player_l_d = -1;
 	delete_props(&list);
 	lines = list_to_arr(list);
 	free_list(&list);
 	map_is_closed(lines);
 	check_map_elm(lines, &props);
-	map = line_to_str(lines);
+	line_to_str(lines);
 	free_list(&list);
 	// print_arr(map.array);
 	// print_props(props);
 	// check_all_spaces(lines);
-	end_game(NULL);
+	// end_game(NULL);
 	// print_list_map(&list);
-	return (0);
+	// return (0);
 }
 
 // void	check_prop()
