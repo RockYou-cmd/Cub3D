@@ -317,7 +317,7 @@ t_map line_to_str(t_line *lines)
 	width_height(lines, &map);
 	if (map.cols == -1 || map.rows == -1)
 		end_game("map 69");
-	map.array = malloc(sizeof(char *) * map.cols);
+	map.array = malloc(sizeof(char *) * map.rows);
 	if (!lines)
 		end_game("map 69");
 	i = 0;
