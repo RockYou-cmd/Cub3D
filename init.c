@@ -47,11 +47,11 @@ void game_start()
 
 void init(char **av)
 {
-    data.square_size = 32;
+    data.square_size = 64;
     data.map.array = malloc(sizeof(char *));
     read_map(av[1]);
-    // data.window_hight = 1900;
-    // data.window_width = 2400;
+    // data.window_hight = 1000;
+    // data.window_width = 1900;
     data.window_hight = data.square_size * data.map.rows;
     data.window_width = data.square_size * data.map.cols;
     data.texture_size = data.square_size;
