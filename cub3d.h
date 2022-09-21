@@ -8,6 +8,7 @@
 #include <fcntl.h>
 # include "./libft/libft.h"
 # include "./gnl/get_next_line.h"
+// #include "wall.ppm"
 
 #define RIGHT 2
 #define LEFT 0
@@ -41,6 +42,7 @@ typedef struct s_map
 	char	**array;
 	int		rows;
 	int		cols;
+    void    *wall;
 }	t_map;
 
 typedef struct s_player
@@ -66,6 +68,7 @@ typedef struct s_data
     float y;
     int window_hight;
     int window_width;
+    int texture_size;
     int square_size;
     t_map map;
     t_player player;
@@ -88,10 +91,10 @@ int     wall_check(float x, float y);
 void    cast_rays();
 void	my_mini_mlx_pixel_put(int x, int y, int color);
 void	my_main_mlx_pixel_put(int x, int y, int color);
-int    horizon_check(float ray_angle);
+void    horizon_check(float ray_angle);
 int    vertic_check(float ray_angle);
-int hcast(float nextX, float nextY);
-int vcast(float nextX, float nextY);
+int hcast(float nextX, float nextY, float hstepx, float hstepy);
+int vcast(float nextX, float nextY, float vstepx, float vstepy);
 float angle_corrector(float angle);
 int sum_of_rgb(int t, int r, int g, int b);
 

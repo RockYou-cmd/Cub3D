@@ -89,6 +89,8 @@ void	read_map(char *file)
 	{
 		fillmap(line);
 		line = get_next_line(fd);
+		if (line && ft_strlen(line) - 1 > (unsigned long)data.map.cols)
+			data.map.cols = ft_strlen(line) - 1;
 	}
 	if (!checkmap())
 		end_game("WRONG MAP SIZE.");

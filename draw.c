@@ -26,7 +26,7 @@ void player()
 	float x;
 	float y;
 	float angle = 0;
-	r = 3;
+	r = 5;
 	while(r >= 0)
 	{
 		angle = 0;
@@ -34,7 +34,7 @@ void player()
 		{
 			x = r * cos(angle) + data.player.x;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 			y = r * sin(angle) + data.player.y;
-			my_mini_mlx_pixel_put(x, y, 16711680);
+			my_mini_mlx_pixel_put(x, y, 16776960);
 			angle += 0.1;
 		}
 		r -= 1;
@@ -75,10 +75,10 @@ void draw()
 		while(ix < data.map.cols)
 		{
 			if (data.map.array[iy][ix] == '1')
-				square_drawing(ix * data.square_size, iy * data.square_size, sum_of_rgb(222, 16777164, 0, 0));
+				square_drawing(ix * data.square_size, iy * data.square_size, 16775916);
 			// else if(data.map.array[iy][ix] == '0')
 			else 
-				square_drawing(ix * data.square_size, iy * data.square_size,  sum_of_rgb(222, 2431280, 0, 0));
+				square_drawing(ix * data.square_size, iy * data.square_size, 2371579);
 
 			ix ++;
 		}
