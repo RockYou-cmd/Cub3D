@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include "wall.ppm"
 
 int sum_of_rgb(int t, int r, int g, int b)
 {
@@ -14,16 +15,18 @@ int main()
 
 	x = 0;
 	y = 0;
-	while(y <= 100 - 2)
+	while(x < 32)
 	{
-		x = 0;
-		while(x <= 100 - 2)
+		y = 0;
+		while (y < 32)
 		{
-				mlx_pixel_put(data.mlx, data.win, x, y, sum_of_rgb(222, 255, 161, 227));
-			x ++;
+			int pixel = (y * 32 + x) * 3;
+			mlx_pixel_put(data.mlx, data.win, x, y, sum_of_rgb(0, texture[pixel], texture[pixel + 1], texture[pixel + 2]));
+			y ++;
 		}
-		y ++;
+		x ++;
 	}
     mlx_loop(data.mlx);
-
 }
+	// x ++;
+
