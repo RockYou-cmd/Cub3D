@@ -30,21 +30,34 @@ void	add_last(t_list_map **list, char *str)
 	}
 }
 
+void remove_end_spaces(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+		i++;
+	i--;
+	while (line[i] == ' ')
+		i--;
+	line[i + 1] = '\0';
+}
+
 t_list_map	*creat_list_map(char *file)
 {
 	int fd;
-	char *whole_map;
 	char *new_line;
 	t_list_map *list;
-	// char **mapfile;
+
 	list = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		end_game("file err");
-	whole_map = ft_strdup("");
 	new_line = get_next_line(fd);
 	while (new_line)
 	{
+		if (!all_spaces(new_line))
+			remove_end_spaces(new_line);
 		add_last(&list, new_line);
 		new_line = get_next_line(fd);
 	}
@@ -66,6 +79,7 @@ t_list_map *delete_node(t_list_map **list, t_list_map *to_delete)
 	while (tmp->next && tmp->next != to_delete)
 		tmp = tmp->next;
 	tmp->next = to_delete->next;
+	free(to_delete->line);
 	to_delete->next = NULL;
 	free(to_delete);
 	return (tmp->next);

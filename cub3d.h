@@ -100,5 +100,69 @@ void main_dda(float x, float y, float x2, float y2, int color);
 void	end_game(char *error_message);
 
 
+/* ////////////////// */
+/* ///PARSING UTILS// */
+
+enum
+{
+	NO,
+	SO,
+	WE,
+	EA,
+	F,
+	C
+};
+
+typedef struct s_properties
+{
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+
+	int f[3];
+	int c[3];
+	int player_l_d;
+
+}	t_props;
+
+struct map
+{
+	char *line;
+	int len;
+};
+
+typedef struct s_list_cub
+{
+	char *line;
+	struct s_list_cub *next;
+} t_list_map;
+
+t_props pars_props(t_list_map *list);
+void	delete_props(t_list_map **list);
+void	print_props(t_props props);
+void	delete_props(t_list_map **list);
+// void	remove_empty_lines(t_list_map **list);
+
+/*parsing suport*/
+
+void	remove_empty_lines(t_list_map **list);
+int		all_spaces(char *line);
+int		ft_strcmp(const char *s1, const char *s2);
+/* ////////////////// */
+/* ////////////////// */
+
+/* ////////////////// */
+/* ////LIST UTILS//// */
+
+
+
+void	add_last(t_list_map **list, char *str);
+t_list_map	*creat_list_map(char *file);
+t_list_map *delete_node(t_list_map **list, t_list_map *to_delete);
+void	print_list_map(t_list_map **tmp);
+
+/* ////////////////// */
+/* ////////////////// */
 #endif // CUB3d
 
