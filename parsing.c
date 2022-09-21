@@ -299,11 +299,11 @@ void width_height(t_line *lines, t_map *map)
 	i = 0;
 	while (lines[i].line)
 	{
-		if (map->rows < lines[i].len)
-			map->rows = lines[i].len;
+		if (map->cols < lines[i].len)
+			map->cols = lines[i].len;
 		i++;
 	}
-	map->cols = i;
+	map->rows = i;
 }
 
 t_map line_to_str(t_line *lines)
