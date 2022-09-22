@@ -64,8 +64,20 @@ int wall_check(float x, float y)
 
     col = floor(x / data.square_size);
 	row = floor(y / data.square_size);
+	if (row == 11)
+		row = 10;
+	// printf("test1\n");
+	// printf("+++ col %d | row %d rows %d\n", col, row, data.map.rows);
+	// printf("test2\n");
     if (data.map.array[row][col] && data.map.array[row][col] == '0')
+	{
+		// printf("1----\n");
 		return 0;
+	}
 	else
+	{
+
+		// printf("2----\n");
 		return 1;
+	}
 }

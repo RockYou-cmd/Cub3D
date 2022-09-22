@@ -10,10 +10,12 @@ void	my_main_mlx_pixel_put(int x, int y, int color)
 void	my_mini_mlx_pixel_put(int x, int y, int color)
 {
 	char	*dst;
-	if (x >= data.window_width || x <= 0 || y >= data.window_hight || y <= 0)
-		return ;
+	// if (x >= data.square_size * data.map.cols || x <= 0 || y >= (data.square_size * data.map.rows) || y <= 0)
+	// 	return ;
 	// my_main_mlx_pixel_put(x, y, color);
 		// return ;
+	if (x > data.player.x + 300 || x < data.player.x - 300 || y > data.player.y + 300 || y < data.player.y - 300)
+		return ;
 	x /= 4;
 	y /= 4;
 	dst = data.addr + (y * data.line_length + x * (data.bits_per_pixel / 8));
@@ -68,7 +70,6 @@ void draw()
 	int iy = 0;
 	int ix = 0;
 	
-	mlx_clear_window(data.mlx, data.win);
 	while (iy < data.map.rows)
 	{
 		ix = 0;
@@ -79,7 +80,6 @@ void draw()
 			else if(data.map.array[iy][ix] && data.map.array[iy][ix] == '0')
 				square_drawing(ix * data.square_size, iy * data.square_size, 2371579);
 			// else 
-
 			ix ++;
 		}
 		iy ++;

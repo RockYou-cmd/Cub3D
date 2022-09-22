@@ -33,8 +33,8 @@ void var_update()
 }
 void update()
 {
-	// puts(data.map.array[42]);
     var_update();
+	mlx_clear_window(data.mlx, data.win);
 	cast_rays();
 	draw();
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
@@ -48,27 +48,23 @@ void game_start()
 
 void init(char **av)
 {
-    // t_list_map *list;
-	// t_line *lines;
-
-	// list = creat_list_map(av[1]);
     data.square_size = 32;
     init_map(av);
-    // data.map = ;
-    // data.map.array = malloc(sizeof(char *));
-    // read_map(av[1]);
-    data.window_hight = 2000;
-    data.window_width = 1900;
-    // data.window_hight = data.square_size * data.map.rows;
-    // data.window_width = data.square_size * data.map.cols;
+    data.window_hight = 1080;
+    data.window_width = 1920;
+    // if (data.square_size * data.map.rows > 1400)
+    //     data.window_hight = 1400;
+    // else
+    //     data.window_hight = data.square_size * data.map.rows;
+    // if (data.square_size * data.map.cols > 2500)
+    //     data.window_width = 2500;
+    // else
+    //     data.window_width = data.square_size * data.map.cols;
     data.texture_size = data.square_size;
     data.player.rotationAngle = M_PI / 2;
     data.player.rotationSpeed = 3 * (M_PI / 180);
     data.player.moveSpeed = 3.0;
-    // data.player.x = data.window_width/2;
-    // data.player.y = data.window_hight/2;
     data.player.fov_angle = 60 * (M_PI / 180);
     data.rays.num = data.window_width;
     data.rays.width = 1;
 }
- 

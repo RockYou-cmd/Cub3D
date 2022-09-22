@@ -11,7 +11,6 @@ void strip(float x1, float y1, float x2, float y2, int color, int x_offset)
 	float inc = data.texture_size / y2;
 	(void)x2;
 	(void)color;
-	(void)x_offset;
 	while(y <= y2)
 	{
 		red = texture[(((int)inc * 32) + x_offset) * 3 ];
@@ -91,7 +90,7 @@ float angle_corrector(float angle)
 
 int hcast(float nextX, float nextY, float hstepx, float hstepy)
 {
-	while (nextX > 0 && nextX < data.window_width && nextY > 0 && nextY < data.window_hight)
+	while (nextX > 0 && nextX < (data.map.cols * data.square_size) && nextY > 0 && nextY < (data.map.rows * data.square_size))
 	{
 		if (wall_check(nextX, nextY))
 		{
@@ -110,7 +109,7 @@ int hcast(float nextX, float nextY, float hstepx, float hstepy)
 }
 int vcast(float nextX, float nextY, float vstepx, float vstepy)
 {
-	while (nextX > 0 && nextX < data.window_width && nextY > 0 && nextY < data.window_hight)
+	while (nextX > 0 && nextX < (data.map.cols * data.square_size) && nextY > 0 && nextY < (data.map.rows * data.square_size))
 	{
 		if (wall_check(nextX, nextY))
 		{
@@ -170,6 +169,7 @@ void check_ray(float ray_angle, int i)
 	hit_distance = hit_distance * cos(ray_angle - data.player.rotationAngle);
 	walldistance = (data.window_width / 2) / tan(data.player.fov_angle / 2);
 	wall_hight = (32 / hit_distance) * walldistance;
+	// i = 5;
 	if (way)
 		strip(i * data.rays.width, (data.window_hight / 2) - (wall_hight / 2), data.rays.width, wall_hight, 15952896, x_offset);
 	else
