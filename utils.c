@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int sum_of_rgb(int t, int r, int g, int b)
+int sum_of_rgb(int r, int g, int b)
 {
-	return ((t * 16777216) + (65537 * r) + (256 * g) + b);
+	return ((65536 * r) + (256 * g) + b);
 }

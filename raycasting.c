@@ -1,22 +1,18 @@
 #include "cub3d.h"
-#include "wall.ppm"
 
-
-void strip(float x1, float y1, float x2, float y2, int color, int x_offset)
+void strip(float x1, float y1, float y2, int x_offset, int textures[])
 {
 	float y = 0;
 	int red;
 	int green;
 	int blue;
-	float inc = data.texture_size / y2;
-	(void)x2;
-	(void)color;
+	float inc = 0;
 	while(y <= y2)
 	{
-		red = texture[(((int)inc * 32) + x_offset) * 3 ];
-		green = texture[(((int)inc * 32) + x_offset) * 3 + 1];
-		blue = texture[(((int)inc * 32) + x_offset) * 3 + 2];
-		my_main_mlx_pixel_put(x1 , y1 + y, sum_of_rgb(0, red, green, blue)); 
+		red = textures[(((int)inc * 32) + x_offset) * 3];
+		green = textures[((((int)inc * 32) + x_offset) * 3) + 1];
+		blue = textures[((((int)inc * 32) + x_offset) * 3) + 2];
+		my_main_mlx_pixel_put(x1 , y1 + y, sum_of_rgb(red, green, blue)); 
 		inc += (data.texture_size / y2);
 		y ++;
 	}
@@ -96,8 +92,7 @@ int hcast(float nextX, float nextY, float hstepx, float hstepy)
 		{
 			data.rays.horz_wall_hitx = nextX;
 			data.rays.horz_wall_hity = nextY;
-			data.rays.hhited = 1;
-			break;
+			return 1;
 		}
 		else
 		{
@@ -115,8 +110,7 @@ int vcast(float nextX, float nextY, float vstepx, float vstepy)
 		{
 			data.rays.vert_wall_hitx = nextX;
 			data.rays.vert_wall_hity = nextY;
-			data.rays.vhited = 1;
-			break;
+			return 1;
 		}
 		else
 		{
@@ -127,58 +121,67 @@ int vcast(float nextX, float nextY, float vstepx, float vstepy)
 	return 0;
 }
 
-void check_ray(float ray_angle, int i)
+float angleof_ray(float ray_angle)
 {
-	float x;
-	float y;
+	data.rays.down = 0;
+	data.rays.up = 0;
+	data.rays.right = 0;
+	data.rays.left = 0;
+	ray_angle = angle_corrector(ray_angle);
+	if (ray_angle > 0 && ray_angle < M_PI)
+		data.rays.down = 1;
+	else
+		data.rays.up = 1;
+	if (ray_angle < M_PI * 0.5 || ray_angle > M_PI * 1.5)
+		data.rays.right = 1;
+	else
+		data.rays.left = 1;
+	return (ray_angle);
+}
+
+void check_ray(float ray_angle, int i, int d)
+{
 	float walldistance;
 	float wall_hight;
 	float hit_distance;
+	int x_offset = 0;
 	int way = 0;
-	int x_offset;
-	ray_angle = angle_corrector(ray_angle);
-	data.rays.down = ray_angle > 0 && ray_angle < M_PI;
-	data.rays.up = !data.rays.down;
-	data.rays.right = ray_angle < M_PI * 0.5 || ray_angle > M_PI * 1.5;
-	data.rays.left = !data.rays.right;
-	horizon_check(ray_angle);
-	vertic_check(ray_angle);
-	if (data.rays.hhited)
+	int x;
+	int y;
+
+	if (horizon_check(ray_angle))
 		data.rays.hdistance = distance(data.rays.horz_wall_hitx, data.rays.horz_wall_hity);
 	else
 		data.rays.hdistance =  INT32_MAX;
-	if (data.rays.vhited)
+	if (vertic_check(ray_angle))
 		data.rays.vdistance = distance(data.rays.vert_wall_hitx, data.rays.vert_wall_hity);
 	else
 		data.rays.vdistance =  INT32_MAX;
-	if (data.rays.hdistance < data.rays.vdistance)
+	if (data.rays.hdistance <= data.rays.vdistance)
 	{
 		way = 1;
-		hit_distance = data.rays.hdistance ;
+		hit_distance = data.rays.hdistance;
+		x_offset = (int)data.rays.horz_wall_hitx % data.square_size;
 		x = data.rays.horz_wall_hitx;
 		y = data.rays.horz_wall_hity;
-		x_offset = (int)x % data.square_size;
 	}
 	else
 	{
-		hit_distance = data.rays.vdistance ;
+		hit_distance = data.rays.vdistance;
+		x_offset = (int)data.rays.vert_wall_hity % data.square_size;
 		x = data.rays.vert_wall_hitx;
 		y = data.rays.vert_wall_hity;
-		x_offset = (int)y % data.square_size;
 	}
 	hit_distance = hit_distance * cos(ray_angle - data.player.rotationAngle);
 	walldistance = (data.window_width / 2) / tan(data.player.fov_angle / 2);
 	wall_hight = (32 / hit_distance) * walldistance;
-	// i = 5;
-	if (way)
-		strip(i * data.rays.width, (data.window_hight / 2) - (wall_hight / 2), data.rays.width, wall_hight, 15952896, x_offset);
+	if (d == 3)
+		draw3D(wall_hight, i, x_offset, way);
 	else
-		strip(i * data.rays.width, (data.window_hight / 2) - (wall_hight / 2), data.rays.width, wall_hight, 15961088, x_offset);
-	main_dda(i * data.rays.width , 0 ,i * data.rays.width,(data.window_hight / 2) - (wall_hight / 2), 11459583);
-	main_dda(i * data.rays.width , (data.window_hight / 2) + (wall_hight / 2) ,i * data.rays.width,data.window_hight, 5520693);
+		draw2D(x, y);
 }
 
-void cast_rays()
+void cast_rays(int d)
 {
 	int col;
 	float ray_angle;
@@ -189,7 +192,7 @@ void cast_rays()
 	ray_angle = data.player.rotationAngle - (data.player.fov_angle / 2);
 	while (i < data.rays.num)
 	{
-		check_ray(ray_angle , i);
+		check_ray(angleof_ray(ray_angle) , i, d);
 		ray_angle += data.player.fov_angle / data.rays.num;
 		i ++;
 	}

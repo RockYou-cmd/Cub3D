@@ -14,10 +14,12 @@ void	my_mini_mlx_pixel_put(int x, int y, int color)
 	// 	return ;
 	// my_main_mlx_pixel_put(x, y, color);
 		// return ;
-	if (x > data.player.x + 300 || x < data.player.x - 300 || y > data.player.y + 300 || y < data.player.y - 300)
-		return ;
 	x /= 4;
 	y /= 4;
+	if (x > (data.player.x / 4) + 100 || x < (data.player.x / 4)  - 100 || y > (data.player.y / 4)  + 100 || y < (data.player.y / 4)  - 100)
+		return ;
+	x -= (data.player.x / 4) - 100;
+	y -= (data.player.y / 4) - 100;
 	dst = data.addr + (y * data.line_length + x * (data.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
@@ -28,7 +30,7 @@ void player()
 	float x;
 	float y;
 	float angle = 0;
-	r = 5;
+	r = 10;
 	while(r >= 0)
 	{
 		angle = 0;
@@ -65,7 +67,7 @@ void square_drawing(int ix, int iy, int color)
 	}
 }
 
-void draw()
+void draw2D()
 {
 	int iy = 0;
 	int ix = 0;
@@ -76,9 +78,9 @@ void draw()
 		while(data.map.array[iy][ix])
 		{
 			if (data.map.array[iy][ix] &&  data.map.array[iy][ix] == '1')
-				square_drawing(ix * data.square_size, iy * data.square_size, 16775916);
+				square_drawing(ix * data.square_size, iy * data.square_size, 15601958);
 			else if(data.map.array[iy][ix] && data.map.array[iy][ix] == '0')
-				square_drawing(ix * data.square_size, iy * data.square_size, 2371579);
+				square_drawing(ix * data.square_size, iy * data.square_size, 2497294);
 			// else 
 			ix ++;
 		}

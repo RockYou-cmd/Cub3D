@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"cub3d.h": "c",
-		"*.ppm": "c"
+		"*.ppm": "c",
+		"ios": "c"
 	}
 }

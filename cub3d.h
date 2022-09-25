@@ -20,8 +20,6 @@
 typedef struct s_rays
 {
 	float width;
-    int vhited;
-    int hhited;
 	int num;
     float vert_wall_hitx;
     float vert_wall_hity;
@@ -127,19 +125,21 @@ t_data data;
 
 void    init(char **av);
 void	read_map(char *file);
-void    draw();
+void    draw2D();
+void draw3D(float wall_hight , int i, int x_offset, int way);
 void    game_start();
 void    update();
 int     wall_check(float x, float y);
-void    cast_rays();
+void    cast_rays(int d);
 void	my_mini_mlx_pixel_put(int x, int y, int color);
 void	my_main_mlx_pixel_put(int x, int y, int color);
-void    horizon_check(float ray_angle);
+int    horizon_check(float ray_angle);
 int    vertic_check(float ray_angle);
 int hcast(float nextX, float nextY, float hstepx, float hstepy);
 int vcast(float nextX, float nextY, float vstepx, float vstepy);
 float angle_corrector(float angle);
-int sum_of_rgb(int t, int r, int g, int b);
+int sum_of_rgb(int r, int g, int b);
+void strip(float x1, float y1, float y2,int x_offset, int textures[]);
 
 void dda(float x2, float y2);
 void main_dda(float x, float y, float x2, float y2, int color);

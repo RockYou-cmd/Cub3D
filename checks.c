@@ -1,13 +1,12 @@
 #include "cub3d.h"
 
-void horizon_check(float ray_angle)
+int horizon_check(float ray_angle)
 {
 	float nextX;
 	float nextY;
 	float hstepx;
 	float hstepy;
 
-	data.rays.hhited = 0;
 	data.rays.first_intersectionY = floor(data.player.y / data.square_size) * data.square_size;
 	if(data.rays.down)
 		data.rays.first_intersectionY += data.square_size;
@@ -24,7 +23,7 @@ void horizon_check(float ray_angle)
 	nextY = data.rays.first_intersectionY;
 	if (data.rays.up)
 		nextY --;
-	hcast(nextX , nextY, hstepx, hstepy);
+	return (hcast(nextX , nextY, hstepx, hstepy));
 }
 
 int vertic_check(float ray_angle)
@@ -34,7 +33,7 @@ int vertic_check(float ray_angle)
 	float vstepx;
 	float vstepy; 
 
-	data.rays.vhited = 0;
+
 	data.rays.first_intersectionX = floor(data.player.x / data.square_size) * data.square_size;
 	if(data.rays.right)
 		data.rays.first_intersectionX += data.square_size;
@@ -51,8 +50,7 @@ int vertic_check(float ray_angle)
 	nextY = data.rays.first_intersectionY;
 	if (data.rays.left)
 		nextX --;
-	vcast(nextX , nextY, vstepx, vstepy);
-	return 0;
+	return vcast(nextX , nextY, vstepx, vstepy);
 
 }
 
@@ -64,20 +62,8 @@ int wall_check(float x, float y)
 
     col = floor(x / data.square_size);
 	row = floor(y / data.square_size);
-	if (row == 11)
-		row = 10;
-	// printf("test1\n");
-	// printf("+++ col %d | row %d rows %d\n", col, row, data.map.rows);
-	// printf("test2\n");
     if (data.map.array[row][col] && data.map.array[row][col] == '0')
-	{
-		// printf("1----\n");
 		return 0;
-	}
 	else
-	{
-
-		// printf("2----\n");
 		return 1;
-	}
 }
