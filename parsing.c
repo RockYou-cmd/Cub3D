@@ -344,19 +344,20 @@ void	free_list(t_list_map **list)
 void init_map(char **av)
 {
 	t_list_map *list;
-	t_props props;
 	t_line *lines;
 
 	check_extention(av[1], ".cub");
 	list = creat_list_map(av[1]);
 	remove_empty_lines(&list);
-	data.props = pars_props(list);
-	props.player_l_d = -1;
+	pars_props(list);
+	data.props.f = sum_of_rgb(data.props.f_rgb[0], data.props.f_rgb[1], data.props.f_rgb[2]);
+	data.props.c = sum_of_rgb(data.props.c_rgb[0], data.props.c_rgb[1], data.props.c_rgb[2]);
+	data.props.player_l_d = -1;
 	delete_props(&list);
 	lines = list_to_arr(list);
 	free_list(&list);
 	map_is_closed(lines);
-	check_map_elm(lines, &props);
+	check_map_elm(lines, &data.props);
 	line_to_str(lines);
 	free_list(&list);
 	// print_arr(map.array);

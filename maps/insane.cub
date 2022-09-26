@@ -1,9 +1,9 @@
-NO textures/wood0.xpm
-SO textures/wood1.xpm
-WE textures/wood2.xpm
-EA textures/wood3.xpp
+NO textures/wood0.ppm
+SO textures/wood1.ppm
+WE textures/wood2.ppm
+EA textures/wood3.ppm
 
-F 81,41,28a
+F 81,41,55
 C 53,168,255
 
 1111111111111111

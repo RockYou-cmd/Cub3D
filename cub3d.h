@@ -52,8 +52,10 @@ typedef struct s_properties
 	char *we;
 	char *ea;
 
-	int f[3];
-	int c[3];
+	int f_rgb[3];
+	int c_rgb[3];
+    int f;
+    int c;
 	int player_l_d;
 
 }	t_props;
@@ -150,7 +152,7 @@ void	end_game(char *error_message);
 /* ///PARSING UTILS// */
 
 
-t_props pars_props(t_list_map *list);
+void    pars_props(t_list_map *list);
 void	delete_props(t_list_map **list);
 void	print_props(t_props props);
 void	delete_props(t_list_map **list);
