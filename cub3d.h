@@ -154,15 +154,17 @@ t_props pars_props(t_list_map *list);
 void	delete_props(t_list_map **list);
 void	print_props(t_props props);
 void	delete_props(t_list_map **list);
-void init_map(char **av);
+void    init_map(char **av);
+void	check_extention(char *file, char *extention);
 // void	remove_empty_lines(t_list_map **list);
 
 /*parsing suport*/
 
+void	free_2d_arr(char **arr);
 void	remove_empty_lines(t_list_map **list);
 int		all_spaces(char *line);
 int		ft_strcmp(const char *s1, const char *s2);
-void print_arr(char **lines);
+void    print_arr(char **lines);
 /* ////////////////// */
 /* ////////////////// */
 

@@ -1,10 +1,54 @@
 #include "cub3d.h"
 
+void	check_extention(char *file, char *extention)
+{
+	int file_len;
+	int extention_len;
+
+	file_len = ft_strlen(file);
+	extention_len = ft_strlen(extention);
+	if (file_len <= extention_len)
+		end_game("extention problem");
+	if (ft_strcmp(file + (file_len - extention_len), extention))
+		end_game("extention problem");
+}
+
 char	*fill_wall(int (*arr)[6], int n, char *str)
 {
 	(*arr)[n] = 1;
+	check_extention(str, ".ppm");
 	return (ft_strdup(str));
 }
+
+void	ft_striteri2(char **s, void (*f)(char))
+{
+	unsigned int	i;
+	int j;
+
+	if (s == NULL)
+		end_game("colors problem");
+	j = 0;
+	if (s)
+	{
+		while (s[j])
+		{
+			i = 0;
+			while (s[j][i])
+			{
+				(*f)(s[j][i]);
+				i++;
+			}
+			j++;
+		}
+	}
+}
+
+void	check_digit(char c)
+{
+	if (!ft_isdigit(c))
+		end_game("colors are not digits");
+}
+
 
 void fill_color(int (*arr)[6], int n, int (*colors)[3], char **str)
 {
@@ -20,10 +64,10 @@ void fill_color(int (*arr)[6], int n, int (*colors)[3], char **str)
 		line = ft_strjoin(line, str[i]);
 		i++;
 	}
-	
 	colors_str = ft_split(line, ',');
-	if (colors_str == NULL)
-		end_game("colors problem");
+	free(line);
+	
+	ft_striteri2(colors_str, check_digit);
 	count = 0;
 	while (colors_str[count] != NULL)
 		count++;
@@ -33,6 +77,7 @@ void fill_color(int (*arr)[6], int n, int (*colors)[3], char **str)
 	(*colors)[0] = ft_atoi(colors_str[0]);
 	(*colors)[1] = ft_atoi(colors_str[1]);
 	(*colors)[2] = ft_atoi(colors_str[2]);
+	free_2d_arr(colors_str);
 	count = 0;
 	while (count < 3)
 	{

@@ -343,16 +343,11 @@ void	free_list(t_list_map **list)
 
 void init_map(char **av)
 {
-
-// }
-
-// int main()
-// {
 	t_list_map *list;
 	t_props props;
 	t_line *lines;
-	// t_map map;
 
+	check_extention(av[1], ".cub");
 	list = creat_list_map(av[1]);
 	remove_empty_lines(&list);
 	data.props = pars_props(list);
