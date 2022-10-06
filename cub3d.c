@@ -56,6 +56,7 @@ int main(int acc, char **av)
 	init(av);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, data.window_width, data.window_hight, "cub3d");
+	read_textures();
 	game_start();
 	mlx_hook(data.win, 2, 1L<<0, movement_check, &data);
 	mlx_hook(data.win, 3, 1L<<1, movement2_check, &data);

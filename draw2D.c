@@ -10,10 +10,8 @@ void	my_main_mlx_pixel_put(int x, int y, int color)
 void	my_mini_mlx_pixel_put(int x, int y, int color)
 {
 	char	*dst;
-	// if (x >= data.square_size * data.map.cols || x <= 0 || y >= (data.square_size * data.map.rows) || y <= 0)
-	// 	return ;
 	// my_main_mlx_pixel_put(x, y, color);
-		// return ;
+	// 	return ;
 	x /= 4;
 	y /= 4;
 	if (x > (data.player.x / 4) + 100 || x < (data.player.x / 4)  - 100 || y > (data.player.y / 4)  + 100 || y < (data.player.y / 4)  - 100)
@@ -30,7 +28,7 @@ void player()
 	float x;
 	float y;
 	float angle = 0;
-	r = 10;
+	r = 20;
 	while(r >= 0)
 	{
 		angle = 0;
@@ -43,8 +41,8 @@ void player()
 		}
 		r -= 1;
 	}
-	x = data.player.x + (cos(data.player.rotationAngle) * 30);
-	y = data.player.y + (sin(data.player.rotationAngle) * 30);
+	x = data.player.x + (cos(data.player.rotationAngle) * 50);
+	y = data.player.y + (sin(data.player.rotationAngle) * 50);
 	dda(x, y);
 }
 

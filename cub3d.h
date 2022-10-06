@@ -116,6 +116,7 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+    int     *img_addr;
     t_map map;
     t_player player;
     t_rays	rays;
@@ -142,6 +143,7 @@ int vcast(float nextX, float nextY, float vstepx, float vstepy);
 float angle_corrector(float angle);
 int sum_of_rgb(int r, int g, int b);
 void strip(float x1, float y1, float y2,int x_offset, int textures[]);
+void read_textures();
 
 void dda(float x2, float y2);
 void main_dda(float x, float y, float x2, float y2, int color);

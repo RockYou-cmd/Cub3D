@@ -1,23 +1,5 @@
 #include "cub3d.h"
 
-void strip(float x1, float y1, float y2, int x_offset, int textures[])
-{
-	float y = 0;
-	int red;
-	int green;
-	int blue;
-	float inc = 0;
-	while(y <= y2)
-	{
-		red = textures[(((int)inc * 32) + x_offset) * 3];
-		green = textures[((((int)inc * 32) + x_offset) * 3) + 1];
-		blue = textures[((((int)inc * 32) + x_offset) * 3) + 2];
-		my_main_mlx_pixel_put(x1 , y1 + y, sum_of_rgb(red, green, blue)); 
-		inc += (data.texture_size / y2);
-		y ++;
-	}
-}
-
 void dda(float x2, float y2)
 {
 	float step;
@@ -178,7 +160,7 @@ void check_ray(float ray_angle, int i, int d)
 	if (d == 3)
 		draw3D(wall_hight, i, x_offset, way);
 	else
-		draw2D(x, y);
+		dda(x, y);
 }
 
 void cast_rays(int d)

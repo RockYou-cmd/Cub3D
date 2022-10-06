@@ -352,7 +352,7 @@ void init_map(char **av)
 	pars_props(list);
 	data.props.f = sum_of_rgb(data.props.f_rgb[0], data.props.f_rgb[1], data.props.f_rgb[2]);
 	data.props.c = sum_of_rgb(data.props.c_rgb[0], data.props.c_rgb[1], data.props.c_rgb[2]);
-	data.props.player_l_d = -1;
+	data.props.player_l_d = M_PI/2;
 	delete_props(&list);
 	lines = list_to_arr(list);
 	free_list(&list);
