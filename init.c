@@ -38,7 +38,7 @@ void update()
 	var_update(0, 0, 0);
 	cast_rays(3);
 	draw2D();
-	cast_rays(2);
+	// cast_rays(2);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 
 }

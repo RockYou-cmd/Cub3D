@@ -28,17 +28,14 @@ void read_textures()
 	if (!_img)
 		end_game("mlx image error");
 	data.img_addr[0] = (int *)mlx_get_data_addr(_img, &bits, &length, &end);
-
 	_img = mlx_xpm_file_to_image(data.mlx, data.props.so, &x, &y);
 	if (!_img)
 		end_game("mlx image error");
 	data.img_addr[1] = (int *)mlx_get_data_addr(_img, &bits, &length, &end);
-
 	_img = mlx_xpm_file_to_image(data.mlx, data.props.we, &x, &y);
 	if (!_img)
 		end_game("mlx image error");
 	data.img_addr[2] = (int *)mlx_get_data_addr(_img, &bits, &length, &end);
-
 	_img = mlx_xpm_file_to_image(data.mlx, data.props.ea, &x, &y);
 	if (!_img)
 		end_game("mlx image error");

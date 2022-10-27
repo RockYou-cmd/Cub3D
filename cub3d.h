@@ -153,10 +153,14 @@ float angle_corrector(float angle);
 int sum_of_rgb(int r, int g, int b);
 void strip(float x1, float y1, float y2,int x_offset, int w);
 void read_textures();
+void check_ray(float ray_angle, int i);
 
-void dda(float x2, float y2);
-void main_dda(float x, float y, float x2, float y2, int color);
+void    dda(float x2, float y2);
+void    main_dda(float x, float y, float x2, float y2, int color);
 void	end_game(char *error_message);
+float   distance(float x, float y);
+float   angle_corrector(float angle);
+float implement(float hit_distance, float ray_angle);
 
 
 /* ////////////////// */

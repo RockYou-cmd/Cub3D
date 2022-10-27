@@ -118,7 +118,7 @@ int check_space(t_line *lines, int index, int i)
 	if (index != 0 && lines[index - 1].len >= lines[index].len && 
 	lines[index - 1].line[i] == '0')
 		return (0);
-	if (lines[index].line && lines[index + 1].len >= lines[index].len && 
+	if (lines[index].line && lines[index + 1].line && lines[index + 1].len >= lines[index].len && 
 	lines[index + 1].line[i] == '0')
 		return (0);
 	return (1);
@@ -246,6 +246,7 @@ int check_player(char c)
 		return (EA);
 	if (c != '1' && c != '0' && c != ' ')
 		end_game("there is an outside character");
+
 	return (-1);
 }
 
@@ -276,12 +277,16 @@ void check_map_elm(t_line *lines, t_props *props)
 		index.i = 0;
 		while (lines[index.index].line[index.i] != '\0')
 		{
+			// printf("teeeeest1\n");
 			if (check_player(lines[index.index].line[index.i]) != -1 && 
 			player == -1)
+			{
 				check_map_elm_utils(lines, props, &player, index);
-			else if (check_player(lines[index.index].line[index.i]) != -1 && 
-			player != -1)
-				end_game("too many players");
+			}
+			// else if (check_player(lines[index.index].line[index.i]) != -1 && 
+			// player != -1)
+			// 	end_game("too many players");
+			// printf("teeest2\n");
 			if (lines[index.index].line[index.i] == ' ' && 
 			!check_space(lines, index.index, index.i))
 				end_game("map is wrong");
