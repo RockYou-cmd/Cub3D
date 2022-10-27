@@ -111,12 +111,14 @@ typedef struct s_data
     int window_width;
     int texture_size;
     int square_size;
+    int ud;
+    int rl;
     void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-    int     *img_addr;
+    int     *img_addr[4];
     t_map map;
     t_player player;
     t_rays	rays;
@@ -142,7 +144,7 @@ int hcast(float nextX, float nextY, float hstepx, float hstepy);
 int vcast(float nextX, float nextY, float vstepx, float vstepy);
 float angle_corrector(float angle);
 int sum_of_rgb(int r, int g, int b);
-void strip(float x1, float y1, float y2,int x_offset, int textures[]);
+void strip(float x1, float y1, float y2,int x_offset, int w);
 void read_textures();
 
 void dda(float x2, float y2);

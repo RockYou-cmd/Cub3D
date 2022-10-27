@@ -16,7 +16,7 @@ void	check_extention(char *file, char *extention)
 char	*fill_wall(int (*arr)[6], int n, char *str)
 {
 	(*arr)[n] = 1;
-	check_extention(str, ".ppm");
+	check_extention(str, ".xpm");
 	return (ft_strdup(str));
 }
 

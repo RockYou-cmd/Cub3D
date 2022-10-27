@@ -6,6 +6,7 @@ void var_update()
 	int movestep;
 	float nextX;
 	float nextY;
+
 	data.img = mlx_new_image(data.mlx, data.window_width, data.window_hight);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 	data.player.rotationAngle += data.player.turnDirection * data.player.rotationSpeed;
@@ -36,16 +37,6 @@ void var_update()
 			data.player.y = data.player.y + sin(data.player.rotationAngle) * movestep;
 		}
 	}
-// 	if (data.player.walkDirection && !wall_check(nextX, nextY))
-// 	{
-// 		data.player.x = nextX;
-// 		data.player.y = nextY;
-// 	}
-// 	if (data.player.twalkDirection && !wall_check(nextX, nextY))
-// 	{
-// 		data.player.x = nextX;
-// 		data.player.y = nextY;
-// 	}
 }
 void update()
 {
@@ -53,7 +44,7 @@ void update()
 	var_update();
 	cast_rays(3);
 	draw2D();
-	// cast_rays(2);
+	cast_rays(2);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 
 }

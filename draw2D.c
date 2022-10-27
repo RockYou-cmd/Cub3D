@@ -10,8 +10,7 @@ void	my_main_mlx_pixel_put(int x, int y, int color)
 void	my_mini_mlx_pixel_put(int x, int y, int color)
 {
 	char	*dst;
-	// my_main_mlx_pixel_put(x, y, color);
-	// 	return ;
+
 	x /= 4;
 	y /= 4;
 	if (x > (data.player.x / 4) + 100 || x < (data.player.x / 4)  - 100 || y > (data.player.y / 4)  + 100 || y < (data.player.y / 4)  - 100)
@@ -28,7 +27,7 @@ void player()
 	float x;
 	float y;
 	float angle = 0;
-	r = 20;
+	r = 020;
 	while(r >= 0)
 	{
 		angle = 0;

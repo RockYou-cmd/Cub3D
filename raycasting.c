@@ -102,24 +102,54 @@ int vcast(float nextX, float nextY, float vstepx, float vstepy)
 	}
 	return 0;
 }
+void direction_check(float ray_angle)
+{
+	if (ray_angle > 0 && ray_angle < M_PI)
+	{
+		data.ud = 0;
+	}
+	else
+	{
+		data.ud = 1;
+	}
+	if (ray_angle < M_PI * 0.5 || ray_angle > M_PI * 1.5)
+	{
+		data.rl = 1;
+	}
+	else 
+	{
+		data.rl = 0;
+	}
+}
 
 float angleof_ray(float ray_angle)
 {
+	ray_angle = angle_corrector(ray_angle);
 	data.rays.down = 0;
 	data.rays.up = 0;
 	data.rays.right = 0;
 	data.rays.left = 0;
-	ray_angle = angle_corrector(ray_angle);
-	if (ray_angle > 0 && ray_angle < M_PI)
+	if (ray_angle >= 0 && ray_angle <= M_PI)
+	{
 		data.rays.down = 1;
-	else
+	}
+	else //if (ray_angle > M_PI)
+	{
 		data.rays.up = 1;
-	if (ray_angle < M_PI * 0.5 || ray_angle > M_PI * 1.5)
+	}
+	if (ray_angle <= M_PI * 0.5 || ray_angle >= M_PI * 1.5)
+	{
 		data.rays.right = 1;
-	else
+	}
+	else //if (ray_angle > M_PI * 0.5 && ray_angle < M_PI * 1.5)
+	{
 		data.rays.left = 1;
+	}
+	// printf("up : %d | down : %d | right : %d | left : %d\n", data.rays.up, data.rays.down, data.rays.right , data.rays.left);
+	direction_check(ray_angle);	
 	return (ray_angle);
 }
+
 
 void check_ray(float ray_angle, int i, int d)
 {
@@ -143,14 +173,16 @@ void check_ray(float ray_angle, int i, int d)
 	{
 		way = 1;
 		hit_distance = data.rays.hdistance;
-		x_offset = (int)data.rays.horz_wall_hitx % data.square_size;
+		// x_offset = (int)data.rays.horz_wall_hitx % data.square_size;
+		x_offset = fmod(data.rays.horz_wall_hitx , data.square_size);
 		x = data.rays.horz_wall_hitx;
 		y = data.rays.horz_wall_hity;
 	}
 	else
 	{
 		hit_distance = data.rays.vdistance;
-		x_offset = (int)data.rays.vert_wall_hity % data.square_size;
+		// x_offset = (int)data.rays.vert_wall_hity % data.square_size;
+		x_offset = fmod(data.rays.vert_wall_hity , data.square_size);
 		x = data.rays.vert_wall_hitx;
 		y = data.rays.vert_wall_hity;
 	}

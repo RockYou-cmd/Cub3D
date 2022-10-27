@@ -31,7 +31,7 @@ int vertic_check(float ray_angle)
 	float nextX;
 	float nextY;
 	float vstepx;
-	float vstepy; 
+	float vstepy;
 
 
 	data.rays.first_intersectionX = floor(data.player.x / data.square_size) * data.square_size;
@@ -51,7 +51,6 @@ int vertic_check(float ray_angle)
 	if (data.rays.left)
 		nextX --;
 	return vcast(nextX , nextY, vstepx, vstepy);
-
 }
 
 
