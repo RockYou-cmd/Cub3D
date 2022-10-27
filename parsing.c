@@ -124,20 +124,27 @@ int check_space(t_line *lines, int index, int i)
 	return (1);
 }
 
+static void check_line_utils(t_line *lines, int index, int *i)
+{
+	while (lines[index].line && lines[index].line[*i] && lines[index].line[*i] == ' ')
+	{
+		if (lines[index + 1].line[*i] == '0')
+			end_game("map is not closed 3");
+		(*i)++;
+	}
+}
+
 void check_line(t_line *lines, int index)
 {
 	int i;
 
 	i = 0;
-	while (lines[index].line && lines[index].line[i] && lines[index].line[i] == ' ')
-	{
-		if (lines[index + 1].line[i] == '0')
-			end_game("map is not closed 3");
-		i++;
-	}
+
+	check_line_utils(lines, index, &i);
 	if(!lines[index].line[i])
 		return;
-	if (lines[index].line[i] != '1' || (lines[index].line[lines[index].len - 1] != '1' 
+	if (lines[index].line[i] != '1' || 
+	(lines[index].line[lines[index].len - 1] != '1' 
 	&& lines[index].line[lines[index].len - 1] != ' '))
 			end_game("map is not closed 4");
 	if (index != 0 && (lines[index - 1].len < lines[index].len))
@@ -242,38 +249,47 @@ int check_player(char c)
 	return (-1);
 }
 
-void check_map_elm(t_line *lines, t_props *props)
+static void check_map_elm_utils(t_line *lines, t_props *props, int *player, t_index index)
 {
-	int index;
-	int i;
-	int player;
+	data.player.x = index.i * data.square_size + 15;
+	data.player.y = index.index * data.square_size + 15;
+	*player = 1;
+	(*props).player_l_d = check_player(lines[index.index].line[index.i]);
+	lines[index.index].line[index.i] = '0';
+}
 
-	index = 1;
-	player = -1;
-	while (lines[index].line)
-	{
-		i = 0;
-		while (lines[index].line[i] != '\0')
-		{
-			if (check_player(lines[index].line[i]) != -1 && player == -1)
-			{
-				data.player.x = i * data.square_size + 15;
-				data.player.y = index * data.square_size + 15;
-				player = 1;
-				(*props).player_l_d = check_player(lines[index].line[i]);
-				lines[index].line[i] = '0';
-				// data.map.array[index][i] = '0';
-			}
-			else if (check_player(lines[index].line[i]) != -1 && player != -1)
-				end_game("too many players");
-			if (lines[index].line[i] == ' ' && !check_space(lines, index, i))
-				end_game("map is wrong");
-			i++;
-		}
-		index++;
-	}
+static void valid_player(int player)
+{
 	if (player == -1)
 		end_game("no player found");
+}
+
+void check_map_elm(t_line *lines, t_props *props)
+{
+	t_index index;
+	int player;
+
+	index.index = 1;
+	player = -1;
+	while (lines[index.index].line)
+	{
+		index.i = 0;
+		while (lines[index.index].line[index.i] != '\0')
+		{
+			if (check_player(lines[index.index].line[index.i]) != -1 && 
+			player == -1)
+				check_map_elm_utils(lines, props, &player, index);
+			else if (check_player(lines[index.index].line[index.i]) != -1 && 
+			player != -1)
+				end_game("too many players");
+			if (lines[index.index].line[index.i] == ' ' && 
+			!check_space(lines, index.index, index.i))
+				end_game("map is wrong");
+			index.i++;
+		}
+		index.index++;
+	}
+	valid_player(player);
 }
 
 void print_arr(char **lines)

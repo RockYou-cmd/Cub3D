@@ -86,6 +86,13 @@ typedef struct s_map
     void    *wall;
 }	t_map;
 
+typedef struct s_ind
+{
+    int i;
+    int index;
+} t_index;
+
+
 typedef struct s_player
 {
 	float		x;
