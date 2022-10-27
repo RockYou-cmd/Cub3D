@@ -133,7 +133,7 @@ float angleof_ray(float ray_angle)
 	{
 		data.rays.down = 1;
 	}
-	else //if (ray_angle > M_PI)
+	else
 	{
 		data.rays.up = 1;
 	}
@@ -141,58 +141,49 @@ float angleof_ray(float ray_angle)
 	{
 		data.rays.right = 1;
 	}
-	else //if (ray_angle > M_PI * 0.5 && ray_angle < M_PI * 1.5)
+	else
 	{
 		data.rays.left = 1;
 	}
-	// printf("up : %d | down : %d | right : %d | left : %d\n", data.rays.up, data.rays.down, data.rays.right , data.rays.left);
 	direction_check(ray_angle);	
 	return (ray_angle);
 }
 
-
-void check_ray(float ray_angle, int i, int d)
+float implement(float hit_distance, float ray_angle)
 {
+	
 	float walldistance;
-	float wall_hight;
-	float hit_distance;
-	int x_offset = 0;
-	int way = 0;
-	int x;
-	int y;
+	float wall_height;
 
+	hit_distance = hit_distance * cos(ray_angle - data.player.rotationAngle);
+	walldistance = (data.window_width / 2) / tan(data.player.fov_angle / 2);
+	wall_height = (32 / hit_distance) * walldistance;
+	return (wall_height);
+}
+
+void check_ray(float ray_angle, int i)
+{
+	float hit_distance;
+	int x_offset;
+	int way;
+
+	way = 0;
 	if (horizon_check(ray_angle))
 		data.rays.hdistance = distance(data.rays.horz_wall_hitx, data.rays.horz_wall_hity);
-	else
-		data.rays.hdistance =  INT32_MAX;
 	if (vertic_check(ray_angle))
 		data.rays.vdistance = distance(data.rays.vert_wall_hitx, data.rays.vert_wall_hity);
-	else
-		data.rays.vdistance =  INT32_MAX;
 	if (data.rays.hdistance <= data.rays.vdistance)
 	{
 		way = 1;
 		hit_distance = data.rays.hdistance;
-		// x_offset = (int)data.rays.horz_wall_hitx % data.square_size;
 		x_offset = fmod(data.rays.horz_wall_hitx , data.square_size);
-		x = data.rays.horz_wall_hitx;
-		y = data.rays.horz_wall_hity;
 	}
 	else
 	{
 		hit_distance = data.rays.vdistance;
-		// x_offset = (int)data.rays.vert_wall_hity % data.square_size;
 		x_offset = fmod(data.rays.vert_wall_hity , data.square_size);
-		x = data.rays.vert_wall_hitx;
-		y = data.rays.vert_wall_hity;
 	}
-	hit_distance = hit_distance * cos(ray_angle - data.player.rotationAngle);
-	walldistance = (data.window_width / 2) / tan(data.player.fov_angle / 2);
-	wall_hight = (32 / hit_distance) * walldistance;
-	if (d == 3)
-		draw3D(wall_hight, i, x_offset, way);
-	else
-		dda(x, y);
+	draw3D(implement(hit_distance, ray_angle), i, x_offset, way);
 }
 
 void cast_rays(int d)
@@ -200,13 +191,16 @@ void cast_rays(int d)
 	int col;
 	float ray_angle;
 	int i;
+	(void ) d;
 
 	i = 0;
 	col = 0;
 	ray_angle = data.player.rotationAngle - (data.player.fov_angle / 2);
 	while (i < data.rays.num)
 	{
-		check_ray(angleof_ray(ray_angle) , i, d);
+		data.rays.hdistance =  INT32_MAX;
+		data.rays.vdistance =  INT32_MAX;
+		check_ray(angleof_ray(ray_angle) , i);
 		ray_angle += data.player.fov_angle / data.rays.num;
 		i ++;
 	}

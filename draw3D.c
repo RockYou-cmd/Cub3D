@@ -55,6 +55,6 @@ void draw3D(float wall_hight , int i, int x_offset, int way)
 		strip(i * data.rays.width, (data.window_hight / 2) - (wall_hight / 2), wall_hight, x_offset, 3);
 	else if (!way && !data.rl)
 		strip(i * data.rays.width, (data.window_hight / 2) - (wall_hight / 2), wall_hight, x_offset, 2);
-	main_dda(i * data.rays.width , 0 ,i * data.rays.width,(data.window_hight / 2) - (wall_hight / 2), data.props.f);
-	main_dda(i * data.rays.width , (data.window_hight / 2) + (wall_hight / 2) ,i * data.rays.width,data.window_hight, data.props.c);
+	main_dda(i * data.rays.width , 0 ,i * data.rays.width,(data.window_hight / 2) - (wall_hight / 2), data.props.c);
+	main_dda(i * data.rays.width , (data.window_hight / 2) + (wall_hight / 2) ,i * data.rays.width,data.window_hight, data.props.f);
 }

@@ -27,7 +27,7 @@ void player()
 	float x;
 	float y;
 	float angle = 0;
-	r = 020;
+	r = 10;
 	while(r >= 0)
 	{
 		angle = 0;

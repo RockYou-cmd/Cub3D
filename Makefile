@@ -6,7 +6,7 @@
 #    By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/13 14:03:17 by ael-korc          #+#    #+#              #
-#    Updated: 2022/09/24 17:44:03 by ael-korc         ###   ########.fr        #
+#    Updated: 2022/10/27 20:39:16 by ael-korc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS = cub3d.c \
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME) clean
+all: $(NAME)
 	
 $(NAME): $(OBJS) $(LIBFT_LIB) $(HEADER) 
 	$(CC) $(CFLAGS) $(MLXFLAGS) $(LIBFT_LIB) $(OBJS) -o $(NAME)

@@ -1,18 +1,9 @@
 #include "cub3d.h"
 
 
-void var_update()
+void var_update(int movestep, float nextX, float nextY)
 {
-	int movestep;
-	float nextX;
-	float nextY;
-
-	data.img = mlx_new_image(data.mlx, data.window_width, data.window_hight);
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
-	data.player.rotationAngle += data.player.turnDirection * data.player.rotationSpeed;
-	data.player.rotationAngle =  angle_corrector(data.player.rotationAngle);
 	data.player.move_angle = data.player.rotationAngle - (data.player.fov_angle * 1.5);
-	angle_corrector(data.player.move_angle);
 	if (data.player.twalkDirection)
 	{
 		movestep = data.player.twalkDirection * (data.player.moveSpeed + 20);
@@ -41,7 +32,10 @@ void var_update()
 void update()
 {
 	mlx_clear_window(data.mlx, data.win);
-	var_update();
+	data.img = mlx_new_image(data.mlx, data.window_width, data.window_hight);
+	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
+	data.player.rotationAngle += angle_corrector(data.player.turnDirection * data.player.rotationSpeed);
+	var_update(0, 0, 0);
 	cast_rays(3);
 	draw2D();
 	cast_rays(2);
