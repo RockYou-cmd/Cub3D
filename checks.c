@@ -6,7 +6,7 @@
 /*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 01:58:25 by ael-korc          #+#    #+#             */
-/*   Updated: 2022/10/28 02:47:19 by ael-korc         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:03:00 by ael-korc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,9 @@ int	wall_check(float x, float y)
 
 	col = floor(x / g_data.square_size);
 	row = floor(y / g_data.square_size);
-	if (g_data.map.array[row][col] && g_data.map.array[row][col] == '0')
+
+	if (g_data.map.array[row] && col < (int)ft_strlen(g_data.map.array[row])
+		&& g_data.map.array[row][col] == '0')
 		return (0);
 	else
 		return (1);
