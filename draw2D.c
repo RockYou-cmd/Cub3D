@@ -6,7 +6,7 @@ void	my_main_mlx_pixel_put(int x, int y, int color)
 
 	if (x >= data.window_width || x <= 0 || y >= data.window_hight || y <= 0)
 		return ;
-	dst = data.addr + (y * data.line_length + x * (data.bits_per_pixel / 8));
+	dst = data.addr + (y * data.length + x * (data.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -17,11 +17,11 @@ void	my_mini_mlx_pixel_put(int x, int y, int color)
 	x /= 4;
 	y /= 4;
 	if (x > (data.player.x / 4) + 100 || x < (data.player.x / 4) - 100
-		|| y > (data.player.y / 4)  + 100 || y < (data.player.y / 4)  - 100)
+		|| y > (data.player.y / 4) + 100 || y < (data.player.y / 4)  - 100)
 		return ;
 	x -= (data.player.x / 4) - 100;
 	y -= (data.player.y / 4) - 100;
-	dst = data.addr + (y * data.line_length + x * (data.bits_per_pixel / 8));
+	dst = data.addr + (y * data.length + x * (data.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
