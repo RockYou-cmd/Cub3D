@@ -1,14 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_suport.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/28 00:22:30 by ael-yamo          #+#    #+#             */
+/*   Updated: 2022/10/28 00:24:00 by ael-yamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void remove_empty_lines(t_list_map **list)
+void	remove_empty_lines(t_list_map **list)
 {
-	t_list_map *tmp;
-	int count = 7;
+	t_list_map	*tmp;
+	int			count;
 
-	tmp = *list;	
+	count = 7;
+	tmp = *list;
 	while (tmp && count)
 	{
-		if(tmp->line[0] == '\n' || all_spaces(ft_strtrim(tmp->line, "\n")))
+		if (tmp->line[0] == '\n' || all_spaces(ft_strtrim(tmp->line, "\n")))
 			tmp = delete_node(list, tmp);
 		else
 		{
@@ -31,4 +44,3 @@ int	ft_strcmp(const char *s1, const char *s2)
 		i++;
 	return ((unsigned char)(st1[i]) - (unsigned char)(st2[i]));
 }
-
