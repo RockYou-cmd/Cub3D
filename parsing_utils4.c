@@ -6,7 +6,7 @@
 /*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:58:13 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/10/28 02:01:09 by ael-korc         ###   ########.fr       */
+/*   Updated: 2022/10/28 02:11:55 by ael-korc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	check_map_elm_utils(t_line *lines, \
 t_props *props, int *player, t_index index)
 {
-	data.player.x = index.i * data.square_size + 15;
-	data.player.y = index.index * data.square_size + 15;
+	g_data.player.x = index.i * g_data.square_size + 15;
+	g_data.player.y = index.index * g_data.square_size + 15;
 	*player = 1;
 	(*props).player_l_d = check_player(lines[index.index].line[index.i]);
 	lines[index.index].line[index.i] = '0';

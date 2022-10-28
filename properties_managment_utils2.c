@@ -6,7 +6,7 @@
 /*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 01:21:26 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/10/28 02:01:49 by ael-korc         ###   ########.fr       */
+/*   Updated: 2022/10/28 04:15:35 by ael-korc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,17 @@ void	free_2d_arr(char **arr)
 void	pars_props_utils(char **prop, int (*arr)[6])
 {
 	if (count_prop(prop) == 2 && ft_strcmp(prop[0], "NO") == 0)
-		data.props.no = fill_wall(arr, NO, prop[1]);
+		g_data.props.no = fill_wall(arr, NO, prop[1]);
 	else if (count_prop(prop) == 2 && ft_strcmp(prop[0], "SO") == 0)
-		data.props.so = fill_wall(arr, SO, prop[1]);
+		g_data.props.so = fill_wall(arr, SO, prop[1]);
 	else if (count_prop(prop) == 2 && ft_strcmp(prop[0], "WE") == 0)
-		data.props.we = fill_wall(arr, WE, prop[1]);
+		g_data.props.we = fill_wall(arr, WE, prop[1]);
 	else if (count_prop(prop) == 2 && ft_strcmp(prop[0], "EA") == 0)
-		data.props.ea = fill_wall(arr, EA, prop[1]);
+		g_data.props.ea = fill_wall(arr, EA, prop[1]);
 	else if (count_prop(prop) >= 2 && ft_strcmp(prop[0], "F") == 0)
-		fill_color(arr, F, &data.props.f_rgb, prop);
+		fill_color(arr, F, &g_data.props.f_rgb, prop);
 	else if (count_prop(prop) >= 2 && ft_strcmp(prop[0], "C") == 0)
-		fill_color(arr, C, &data.props.c_rgb, prop);
+		fill_color(arr, C, &g_data.props.c_rgb, prop);
 }
 
 void	pars_props_utils2(int (*arr)[6], int count)
@@ -89,7 +89,9 @@ void	pars_props_utils2(int (*arr)[6], int count)
 
 	i = 0;
 	while (!count && (*arr)[i] == 1)
+	{
 		i++;
+	}
 	if (i != 6)
 		end_game("map");
 }

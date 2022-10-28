@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:50:25 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/10/28 00:52:51 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/10/28 03:21:12 by ael-korc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ t_line	*list_to_arr(t_list_map *list)
 	while (list && ft_strcmp(list->line, "\n"))
 	{
 		lines[i].line = ft_strdup_n(list->line);
-		lines[i].len = ft_strlen(lines[i].line);
 		if (!lines[i].line)
 			end_game("strdup err");
+		lines[i].len = ft_strlen(lines[i].line);
 		list = list->next;
 		i++;
 	}

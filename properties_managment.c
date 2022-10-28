@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   properties_managment.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 01:15:03 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/10/28 01:21:35 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/10/28 04:15:25 by ael-korc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	delete_props(t_list_map **list)
 	count = 6;
 	while (count)
 	{
+		printf("test1\n");
 		delete_node(list, *list);
+		printf("test2\n");
 		count--;
 	}
 }
