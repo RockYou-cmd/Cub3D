@@ -6,7 +6,7 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:54:11 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/10/28 00:54:39 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/10/28 15:36:31 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ int	all_spaces(char *line)
 	while (line[i])
 	{
 		if (line[i] != ' ')
+		{
 			return (0);
+		}
 		i++;
 	}
 	return (1);

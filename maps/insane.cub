@@ -1,11 +1,12 @@
-NO pics/wall1.xpm
-SO pics/wall2.xpm
-WE pics/wall3.xpm
-EA pics/wall4.xpm
+       NO pics/wall1.xpm
+       SO pics/wall2.xpm
+       WE pics/wall3.xpm
+       EA pics/wall4.xpm
 
-F 69,69,169
-C 120,69,120
+       F 69,69,169
+       C 120,69,120
 
+1111111111111111
 1111111111111111
 100000100000001
 100001111111111111111 111

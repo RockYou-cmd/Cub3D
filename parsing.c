@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:31:11 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/10/28 03:22:14 by ael-korc         ###   ########.fr       */
+/*   Updated: 2022/10/28 15:27:39 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ void	free_list(t_list_map **list)
 	tmp = *list;
 	while (tmp){
 		tmp = delete_node(list, tmp);
+	}
+}
+
+void	print_list_map(t_list_map **tmp)
+{
+	t_list_map *list = *tmp;
+	while (list)
+	{
+		printf("%s",list->line);
+		list = list->next;
 	}
 }
 
