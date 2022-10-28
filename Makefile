@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+         #
+#    By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/13 14:03:17 by ael-korc          #+#    #+#              #
-#    Updated: 2022/10/27 20:39:16 by ael-korc         ###   ########.fr        #
+#    Updated: 2022/10/28 01:28:35 by ael-yamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ SRCS = cub3d.c \
 	gnl/get_next_line.c \
 	gnl/get_next_line_utils.c \
 	init.c draw2D.c draw3D.c checks.c raycasting.c parsing.c utils.c\
-	parsing_suport.c list_manipulation.c properties_managment.c
+	parsing_suport.c list_manipulation.c properties_managment.c \
+	parsing_utils.c parsing_utils2.c parsing_utils3.c parsing_utils4.c\
+	properties_managment_utils.c properties_managment_utils2.c 
 	
 
 OBJS = $(SRCS:.c=.o)

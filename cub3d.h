@@ -166,13 +166,24 @@ float implement(float hit_distance, float ray_angle);
 /* ////////////////// */
 /* ///PARSING UTILS// */
 
-
 void    pars_props(t_list_map *list);
 void	delete_props(t_list_map **list);
 void	print_props(t_props props);
 void	delete_props(t_list_map **list);
 void    init_map(char **av);
 void	check_extention(char *file, char *extention);
+int     count_list_elms(t_list_map *list);
+char	*ft_strdup_n(const char *s1);
+t_line	*list_to_arr(t_list_map *list);
+void	check_outside(int start, int end, t_line *lines, int index);
+int	is_player(char c);
+int	check_space(t_line *lines, int index, int i);
+void	check_line(t_line *lines, int index);
+int     all_spaces(char *line);
+void	check_first_line(t_line *lines);
+void	check_last_line(t_line *lines, int i);
+void	map_is_closed(t_line *lines);
+int	check_player(char c);
 // void	remove_empty_lines(t_list_map **list);
 
 /*parsing suport*/
@@ -182,6 +193,15 @@ void	remove_empty_lines(t_list_map **list);
 int		all_spaces(char *line);
 int		ft_strcmp(const char *s1, const char *s2);
 void    print_arr(char **lines);
+void	check_map_elm(t_line *lines, t_props *props);
+void	check_extention(char *file, char *extention);
+char	*fill_wall(int (*arr)[6], int n, char *str);
+void	ft_striteri2(char **s, void (*f)(char));
+void	check_digit(char c);
+char	**get_clr_str(char **str);
+void	fill_color(int (*arr)[6], int n, int (*colors)[3], char **str);
+void	pars_props_utils(char **prop, int (*arr)[6]);
+void	pars_props_utils2(int (*arr)[6], int count);
 /* ////////////////// */
 /* ////////////////// */
 
