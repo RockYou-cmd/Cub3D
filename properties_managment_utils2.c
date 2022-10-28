@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   properties_managment_utils2.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 01:21:26 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/10/28 04:15:35 by ael-korc         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:21:17 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	pars_props_utils2(int (*arr)[6], int count)
 	int	i;
 
 	i = 0;
-	while (!count && (*arr)[i] == 1)
+	while (!count && i < 6 && (*arr)[i] == 1)
 	{
 		i++;
 	}
