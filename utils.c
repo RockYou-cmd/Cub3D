@@ -47,13 +47,18 @@ void dda(float x2, float y2)
 	}
 }
 
-void main_dda(float x, float y, float x2, float y2, int color)
+void main_dda(float x, float y, float x2, float y2)
 {
 	float step;
 	float dx;
 	float dy;
 	int i;
+	int color;
 
+	if (!y)
+		color = data.props.c;
+	else
+		color = data.props.f;
 	dx = x2 - x;
 	dy = y2 - y;
 	if (fabs(dx) > fabs(dy))
