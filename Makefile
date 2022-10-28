@@ -6,7 +6,7 @@
 #    By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/13 14:03:17 by ael-korc          #+#    #+#              #
-#    Updated: 2022/10/28 04:15:46 by ael-korc         ###   ########.fr        #
+#    Updated: 2022/10/28 17:39:21 by ael-korc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBFT_DIR = libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -Ofast -Os 
+CFLAGS = -Wall -Werror -Wextra -Ofast -Os
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 SRCS = cub3d.c \
