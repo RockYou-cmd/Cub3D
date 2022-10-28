@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_suport.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:22:30 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/10/28 15:37:36 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:53:46 by ael-korc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	remove_empty_lines(t_list_map **list)
 {
 	t_list_map	*tmp;
 	int			count;
-	char 		*tmp_line;
+	char		*tmp_line;
+
 	count = 7;
 	tmp = *list;
 	while (tmp && count)

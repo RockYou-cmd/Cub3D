@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_manipulation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:18:31 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/10/28 15:28:25 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:53:16 by ael-korc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ t_list_map	*delete_node(t_list_map **list, t_list_map *to_delete)
 	while (tmp->next && tmp->next != to_delete)
 		tmp = tmp->next;
 	tmp->next = to_delete->next;
-	// printf("::::%s\n", to_delete->line);
 	free(to_delete->line);
 	to_delete->next = NULL;
 	free(to_delete);
