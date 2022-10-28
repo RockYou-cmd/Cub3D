@@ -137,8 +137,8 @@ t_data data;
 
 void    init(char **av);
 void	read_map(char *file);
-void    draw2D();
-void draw3D(float wall_hight , int i, int x_offset, int way);
+void    draw2d();
+void draw3d(float wall_hight , int i, int x_offset, int way);
 void    game_start();
 void    update();
 int     wall_check(float x, float y);

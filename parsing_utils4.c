@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils4.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:58:13 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/10/28 00:58:14 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/10/28 02:01:09 by ael-korc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,3 @@ void	check_map_elm(t_line *lines, t_props *props)
 	}
 	valid_player(player);
 }
-

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checks.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/28 01:58:25 by ael-korc          #+#    #+#             */
+/*   Updated: 2022/10/28 01:59:16 by ael-korc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	horizon_check(float ray_angle)
@@ -97,12 +109,12 @@ void	check_ray(float ray_angle, int i)
 	{
 		way = 1;
 		hit_distance = data.rays.hdistance;
-		x_offset = fmod(data.rays.horz_wall_hitx , data.square_size);
+		x_offset = fmod(data.rays.horz_wall_hitx, data.square_size);
 	}
 	else
 	{
 		hit_distance = data.rays.vdistance;
-		x_offset = fmod(data.rays.vert_wall_hity , data.square_size);
+		x_offset = fmod(data.rays.vert_wall_hity, data.square_size);
 	}
-	draw3D(implement(hit_distance, ray_angle), i, x_offset, way);
+	draw3d(implement(hit_distance, ray_angle), i, x_offset, way);
 }

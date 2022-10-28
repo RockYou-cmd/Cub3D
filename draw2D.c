@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw2D.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-korc <ael-korc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/28 01:58:32 by ael-korc          #+#    #+#             */
+/*   Updated: 2022/10/28 01:59:50 by ael-korc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	my_main_mlx_pixel_put(int x, int y, int color)
@@ -17,7 +29,7 @@ void	my_mini_mlx_pixel_put(int x, int y, int color)
 	x /= 4;
 	y /= 4;
 	if (x > (data.player.x / 4) + 100 || x < (data.player.x / 4) - 100
-		|| y > (data.player.y / 4) + 100 || y < (data.player.y / 4)  - 100)
+		|| y > (data.player.y / 4) + 100 || y < (data.player.y / 4) - 100)
 		return ;
 	x -= (data.player.x / 4) - 100;
 	y -= (data.player.y / 4) - 100;
